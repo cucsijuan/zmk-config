@@ -32,7 +32,7 @@
         spi-max-frequency = <4000000>;
 
         /* WS2812/SK6812 */
-        chain-length = <62>; /* 50 per-key (SK6812MINI-E) + 12 underglow (WS2812B) */
+        chain-length = <31>; /* 25 per-key + 6 underglow en esta mitad */
         spi-one-frame = <0x70>;
         spi-zero-frame = <0x40>;
 
