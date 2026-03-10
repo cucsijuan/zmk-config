@@ -10,16 +10,303 @@
 #include <dt-bindings/zmk/rgb.h>
 
 &led_strip {
-    //chain-length = <6>;
     chain-length = <31>; // Uncomment if using both per-key and underglow LEDs
-    // chain-length = <25>; // Uncomment if using only per-key LEDs.
 };
 
 / {
+
+    combos {
+        compatible = "zmk,combos";
+
+        Lock {
+            bindings = <&kp LG(L)>;
+            key-positions = <40 49>;
+            require-prior-idle-ms = <250>;
+        };
+
+        BT0 {
+            bindings = <&bt BT_SEL 0>;
+            key-positions = <30 43>;
+            require-prior-idle-ms = <250>;
+        };
+
+        BT1 {
+            bindings = <&bt BT_SEL 1>;
+            key-positions = <31 44>;
+            require-prior-idle-ms = <250>;
+        };
+
+        BT2 {
+            bindings = <&bt BT_CLR>;
+            key-positions = <32 45>;
+            require-prior-idle-ms = <250>;
+        };
+
+        BTClear {
+            bindings = <&bt BT_CLR_ALL>;
+            key-positions = <33 46>;
+            require-prior-idle-ms = <250>;
+        };
+
+        ParenthesisCOMBO {
+            bindings = <&ParenthesisC>;
+            key-positions = <7 9>;
+            require-prior-idle-ms = <250>;
+        };
+
+        BracketCOMBO {
+            bindings = <&BracketC>;
+            key-positions = <21 19>;
+            require-prior-idle-ms = <250>;
+        };
+
+        CurlyCOMBO {
+            bindings = <&CurlyC>;
+            key-positions = <37 35>;
+            require-prior-idle-ms = <250>;
+        };
+
+        AngleCOMBO {
+            bindings = <&AngleC>;
+            key-positions = <36 37>;
+            require-prior-idle-ms = <250>;
+        };
+
+        LParen {
+            bindings = <&kp LEFT_PARENTHESIS>;
+            key-positions = <7 8>;
+            require-prior-idle-ms = <250>;
+        };
+
+        RParen {
+            bindings = <&kp RIGHT_PARENTHESIS>;
+            key-positions = <8 9>;
+            require-prior-idle-ms = <250>;
+        };
+
+        LBracket {
+            bindings = <&kp LEFT_BRACKET>;
+            key-positions = <20 19>;
+            require-prior-idle-ms = <250>;
+        };
+
+        RBracket {
+            bindings = <&kp RIGHT_BRACKET>;
+            key-positions = <20 21>;
+            require-prior-idle-ms = <250>;
+        };
+
+        LCurly {
+            bindings = <&kp LEFT_BRACE>;
+            key-positions = <36 35>;
+            require-prior-idle-ms = <250>;
+        };
+
+        RCurly {
+            bindings = <&kp RIGHT_BRACE>;
+            key-positions = <36 37>;
+            require-prior-idle-ms = <250>;
+        };
+
+        Grave {
+            bindings = <&kp GRAVE>;
+            key-positions = <0 12>;
+            require-prior-idle-ms = <250>;
+        };
+
+        Exc {
+            bindings = <&kp EXCLAMATION>;
+            key-positions = <1 13>;
+            require-prior-idle-ms = <250>;
+        };
+
+        At {
+            bindings = <&kp AT_SIGN>;
+            key-positions = <2 14>;
+            require-prior-idle-ms = <250>;
+        };
+
+        Hash {
+            bindings = <&kp HASH>;
+            key-positions = <15 3>;
+            require-prior-idle-ms = <250>;
+        };
+
+        Dollar {
+            bindings = <&kp DOLLAR>;
+            key-positions = <4 16>;
+            require-prior-idle-ms = <250>;
+        };
+
+        Percent {
+            bindings = <&kp PERCENT>;
+            key-positions = <5 17>;
+            require-prior-idle-ms = <250>;
+        };
+
+        Caret {
+            bindings = <&kp CARET>;
+            key-positions = <6 18>;
+            require-prior-idle-ms = <250>;
+        };
+
+        Ampersand {
+            bindings = <&kp AMPERSAND>;
+            key-positions = <7 19>;
+            require-prior-idle-ms = <250>;
+        };
+
+        Asterisk {
+            bindings = <&kp ASTERISK>;
+            key-positions = <20 8>;
+            require-prior-idle-ms = <250>;
+        };
+
+        HomeShiftEndCombo {
+            bindings = <&HomeShiftEnd>;
+            key-positions = <18 20>;
+            require-prior-idle-ms = <250>;
+        };
+
+        PasteClip {
+            bindings = <&kp LG(V)>;
+            key-positions = <28 16>;
+            require-prior-idle-ms = <250>;
+        };
+
+        Undo {
+            bindings = <&kp LC(Z)>;
+            key-positions = <25 26>;
+            require-prior-idle-ms = <250>;
+        };
+
+        Cut {
+            bindings = <&kp LC(X)>;
+            key-positions = <26 27>;
+            require-prior-idle-ms = <250>;
+        };
+
+        Copy {
+            bindings = <&kp LC(C)>;
+            key-positions = <27 28>;
+            require-prior-idle-ms = <250>;
+        };
+
+        Paste {
+            bindings = <&kp LC(V)>;
+            key-positions = <28 29>;
+            require-prior-idle-ms = <250>;
+        };
+
+        AsteriskSurroundCOMBO {
+            bindings = <&AsteriskSurround>;
+            key-positions = <19 18>;
+            require-prior-idle-ms = <250>;
+        };
+
+        LBootLoader {
+            bindings = <&bootloader>;
+            key-positions = <41 42 43>;
+            require-prior-idle-ms = <250>;
+        };
+
+        RBootLoader {
+            bindings = <&bootloader>;
+            key-positions = <47 46 48>;
+            require-prior-idle-ms = <250>;
+        };
+
+        Underscore {
+            bindings = <&kp UNDER>;
+            key-positions = <9 21>;
+            require-prior-idle-ms = <250>;
+        };
+
+        Minus {
+            bindings = <&kp MINUS>;
+            key-positions = <10 22>;
+            require-prior-idle-ms = <250>;
+        };
+
+        cBackspace {
+            bindings = <&kp RC(BACKSPACE)>;
+            key-positions = <11 23>;
+            require-prior-idle-ms = <250>;
+        };
+    };
+
+    macros {
+        ParenthesisC: Parentheses {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings = <&kp LEFT_PARENTHESIS &kp RIGHT_PARENTHESIS &kp LEFT>;
+            label = "PARENTHESES";
+        };
+
+        BracketC: BracketC {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings = <&kp LEFT_BRACKET &kp RIGHT_BRACKET &kp LEFT>;
+            label = "BRACKETC";
+        };
+
+        CurlyC: CurlyC {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings = <&kp LS(LEFT_BRACKET) &kp LS(RIGHT_BRACKET) &kp LEFT>;
+            label = "CURLYC";
+        };
+
+        AngleC: AngleC {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings = <&kp LS(COMMA) &kp LS(PERIOD) &kp LEFT>;
+            label = "ANGLEC";
+        };
+
+        HomeShiftEnd: HomeShiftEnd {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings = <&kp HOME &kp LS(END)>;
+            label = "HOMESHIFTEND";
+        };
+
+        AsteriskSurround: AsteriskSurround {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings = <&kp HOME &kp ASTERISK &kp END &kp ASTRK>;
+            label = "ASTERISKSURROUND";
+        };
+    };
+
+    behaviors {
+        LockScreen: LockScreen {
+            compatible = "zmk,behavior-hold-tap";
+            label = "LOCKSCREEN";
+            bindings = <&kp>, <&kp>;
+            #binding-cells = <2>;
+            tapping-term-ms = <800>;
+            flavor = "tap-preferred";
+        };
+
+        DELsBACK: DELsBACK {
+            compatible = "zmk,behavior-mod-morph";
+            label = "DELSBACK";
+            bindings = <&kp DELETE>, <&kp BACKSPACE>;
+            #binding-cells = <0>;
+            mods = <(MOD_LSFT)>;
+        };
+    };
+
+    sensors {
+        left_config { triggers-per-rotation = <36>; };
+        right_config { triggers-per-rotation = <6>; };
+    };
+
     keymap {
         compatible = "zmk,keymap";
 
-        default_layer {
+        Alphas {
             // ---------------------------------------------------------------------------------------------------------------------------------
             // |  ESC  |  Q  |  W  |  E   |  R   |  T   |                                          |  Y   |  U    |  I    |  O   |   P   |   \  |
             // |  TAB  |  A  |  S  |  D   |  F   |  G   |                                          |  H   |  J    |  K    |  L   |   ;   |   '  |
@@ -28,13 +315,14 @@
             bindings = <
             &kp ESC   &kp Q &kp W &kp E &kp R &kp T                                                  &kp Y &kp U  &kp I     &kp O   &kp P    &kp BSLH
             &kp TAB   &kp A &kp S &kp D &kp F &kp G                                                  &kp H &kp J  &kp K     &kp L   &kp SEMI &kp SQT
-            &kp LSHFT &kp Z &kp X &kp C &kp V &kp B &kp LSHFT &kp LSHFT            &mo 1   &kp LSHFT &kp N &kp M  &kp COMMA &kp DOT &kp FSLH &kp RCTRL
-                                  &kp LGUI &kp DEL &kp RET &kp SPACE &kp ESC       &kp RET &kp SPACE &kp TAB &kp BSPC &kp RALT
+            &mo 3     &kp Z &kp X &kp C &kp V &kp B &DELsBACK                                      &tog 1 &kp N  &kp M     &kp COMMA &kp DOT &mt RCTRL FSLH
+                                  &kp LGUI &kp DEL &kp RET &kp SPACE                                &kp ESC &kp SPACE &kp TAB &kp BSPC &kp RALT
             >;
 
-            sensor-bindings = <&inc_dec_kp C_VOL_UP C_VOL_DN &inc_dec_kp PG_UP PG_DN>;
+            sensor-bindings = <&inc_dec_kp C_VOL_UP C_VOL_DN &inc_dec_kp C_NEXT C_PREV>;
         };
-        function_layer {
+
+        ConfigLayer {
             // ---------------------------------------------------------------------------------------------------------------------------------
             // |       |      |BT_CLR|BTSEL0|BTSEL1|BTSEL2|                                         |Hue+ |Sat+ |Brt+ |Spd+ |Eff  |On   |
             // |       |      |      |BTSEL3|BTSEL4|      |                                         |Hue- |Sat- |Brt- |Spd- |Eff- |     |
@@ -48,6 +336,40 @@
             >;
 
             sensor-bindings = <&inc_dec_kp C_VOL_UP C_VOL_DN &inc_dec_kp PG_UP PG_DN>;
+        };
+
+        NumLayer {
+            // ---------------------------------------------------------------------------------------------------------------------------------
+            // |       |      |  7   |  8   |  9   |  -   |                                          |  /   |  7    |  8    |  9    |  -    |      |
+            // |       |      |  4   |  5   |  6   |  +   |                                          |  *   |  4    |  5    |  6    |  +    |  =   |
+            // |       |      |  1   |  2   |  3   |  .   |                                          | BSPC |  =    |  0    |  1    |  2    |  3    |  .   |
+            //                       |      |      |      |  0      |         |  |         |  0      |      |      |      |
+            bindings = <
+            &trans &trans &kp KP_NUMBER_7 &kp KP_NUMBER_8 &kp KP_NUMBER_9 &kp MINUS              &kp SLASH &kp KP_NUMBER_7 &kp KP_NUMBER_8 &kp KP_NUMBER_9 &kp MINUS &trans
+            &trans &trans &kp KP_NUMBER_4 &kp KP_NUMBER_5 &kp KP_NUMBER_6 &kp PLUS               &kp ASTERISK &kp KP_NUMBER_4 &kp KP_NUMBER_5 &kp KP_NUMBER_6 &kp PLUS &kp EQUAL
+            &trans &trans &kp KP_NUMBER_1 &kp KP_NUMBER_2 &kp KP_NUMBER_3 &kp PERIOD             &kp BSPC &kp EQUAL &kp KP_NUMBER_0 &kp KP_NUMBER_1 &kp KP_NUMBER_2 &kp KP_NUMBER_3 &kp PERIOD
+                                 &trans &trans &trans &kp KP_NUMBER_0                          &trans &trans &trans &trans
+            >;
+
+            sensor-bindings = <&inc_dec_kp C_FAST_FORWARD C_REWIND>;
+        };
+
+        NavLayer {
+            // ---------------------------------------------------------------------------------------------------------------------------------
+            // |       |      | F7   | F8   | F9   |      |                                          |      |       |       |       |       |      |
+            // |       |      | F4   | F5   | F6   |      |                                          | HOME | UP    | END   |       |       |      |
+            // |       |      |F10/F1|F11/F2| F12  | F3   |                                          |      | LEFT  | DOWN  | RIGHT |       |      |
+            //                       |      |      |      |         |         |  |         |         |      |      |      |
+            bindings = <
+            &trans &trans &kp F7 &kp F8 &kp F9 &trans                                          &trans &trans &trans &trans &trans &trans
+            &trans &trans &kp F4 &kp F5 &kp F6 &trans                                          &kp HOME &kp UP &kp END &trans &trans &trans
+            &trans &kp F10 &mt F11 F1 &mt F12 F2 &kp F3                                        &trans &kp LEFT &kp DOWN &kp RIGHT &trans &trans &trans
+                                 &trans &trans &trans &trans                                   &trans &trans &trans &trans
+            >;
+
+            sensor-bindings =
+            <&inc_dec_kp C_BRIGHTNESS_INC C_BRIGHTNESS_DEC>,
+            <&inc_dec_kp PAGE_DOWN PAGE_UP>;
         };
     };
 };
