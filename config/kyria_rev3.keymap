@@ -233,6 +233,11 @@
             key-positions = <11 23>;
             require-prior-idle-ms = <250>;
         };
+
+        question {
+            bindings = <&kp QUESTION>;
+            key-positions = <10 22>;
+        };
     };
 
     macros {
