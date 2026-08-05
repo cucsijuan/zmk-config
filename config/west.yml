@@ -10,6 +10,5 @@ manifest:
     - name: zmk
       remote: zmkfirmware
       import: app/west.yml
-    - path: modules/zmk-rgb-layer
   self:
     path: config
