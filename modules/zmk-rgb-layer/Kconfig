@@ -1,0 +1,4 @@
+menuconfig ZMK_RGB_LAYER
+    bool "ZMK RGB Layer Control"
+    help
+        Enable RGB layer control for per-layer and per-key LED colors

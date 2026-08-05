@@ -1,0 +1,16 @@
+description: ZMK RGB Layer Control
+
+compatible: "zmk,rgb-layer"
+
+properties:
+  layer-colors:
+    type: array
+    description: |
+      Array of RGB colors (0xRRGGBB format) for each layer.
+      Example: <0xFF0000 0x00FF00 0x0000FF> for Red, Green, Blue
+
+  key-colors:
+    type: array
+    description: |
+      Array of RGB colors for individual keys per layer.
+      Organized as [key0_layer0, key0_layer1, ..., key1_layer0, ...]
