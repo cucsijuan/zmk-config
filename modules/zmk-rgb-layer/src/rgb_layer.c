@@ -4,6 +4,8 @@
  * SPDX-License-Identifier: MIT
  */
 
+#define DT_DRV_COMPAT zmk_rgb_layer
+
 #include <zephyr/kernel.h>
 #include <zephyr/logging/log.h>
 #include <zephyr/drivers/led_strip.h>
