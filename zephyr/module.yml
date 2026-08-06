@@ -1,3 +1,6 @@
 build:
+  cmake: .
+  kconfig: modules/zmk-rgb-layer/Kconfig
   settings:
     board_root: .
+    dts_root: modules/zmk-rgb-layer

@@ -1,13 +1,12 @@
 # ZMK RGB Layer - Configuration Example
 
-## 1. Enable the module in west.yml
+## 1. Module registration
 
-Add to `config/west.yml`:
-```yaml
-projects:
-  - name: zmk-rgb-layer
-    path: modules/zmk-rgb-layer
-```
+No west.yml entry is needed. This module lives inside the zmk-config repo
+itself, which is already registered as a Zephyr module (see the repo's
+top-level `zephyr/module.yml`, used for the custom `boards/` directory).
+That root module.yml points its `cmake`, `kconfig`, and `dts_root` build
+settings at this module's files directly.
 
 ## 2. Enable in kyria_rev3.conf
 
