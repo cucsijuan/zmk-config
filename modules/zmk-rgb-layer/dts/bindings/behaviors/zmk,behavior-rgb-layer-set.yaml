@@ -1,0 +1,10 @@
+description: |
+  Sets the active RGB layer color/index for zmk-rgb-layer. Not meant to be
+  bound to a physical key; the rgb_layer driver invokes this internally
+  (as a BEHAVIOR_LOCALITY_GLOBAL behavior) so that layer changes, which are
+  only known on the split central half, also reach the peripheral half's
+  LEDs via ZMK's existing split behavior-invoke transport.
+
+compatible: "zmk,behavior-rgb-layer-set"
+
+include: one_param.yaml

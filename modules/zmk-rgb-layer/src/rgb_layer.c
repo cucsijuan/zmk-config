@@ -21,6 +21,7 @@
 #define RGB_LAYER_HAS_LAYER_EVENTS (!IS_ENABLED(CONFIG_ZMK_SPLIT) || IS_ENABLED(CONFIG_ZMK_SPLIT_ROLE_CENTRAL))
 
 #if RGB_LAYER_HAS_LAYER_EVENTS
+#include <zmk/behavior.h>
 #include <zmk/events/layer_state_changed.h>
 #endif
 
@@ -164,7 +165,21 @@ static int rgb_layer_layer_changed(const zmk_event_t *event) {
     }
 
     if (layer_event->state) {
-        zmk_rgb_layer_update_layer(layer_event->layer);
+        /* Invoke rather than call zmk_rgb_layer_update_layer() directly: this
+         * behavior's GLOBAL locality makes ZMK's split transport forward the
+         * same invocation to the peripheral half, which has no other way to
+         * learn the active layer. It also runs locally here on the central
+         * half, same as a direct call would. */
+        struct zmk_behavior_binding binding = {
+            .behavior_dev = "RGB_LAYER_SET",
+            .param1 = layer_event->layer,
+        };
+        struct zmk_behavior_binding_event event = {
+            .layer = layer_event->layer,
+            .position = 0,
+            .timestamp = k_uptime_get(),
+        };
+        zmk_behavior_invoke_binding(&binding, event, true);
     }
 
     return 0;

@@ -129,4 +129,13 @@
             0x000000 0x000000 0x000000 0x000000 0x000000 0x000000 0x000000 0x000000
         >;
     };
+
+    /* Internal behavior invoked (not bound to a key) by rgb_layer.c to
+     * propagate the active layer's color to the split peripheral half,
+     * via ZMK's BEHAVIOR_LOCALITY_GLOBAL split transport. */
+    rgb_layer_set: rgb_layer_set {
+        compatible = "zmk,behavior-rgb-layer-set";
+        label = "RGB_LAYER_SET";
+        #binding-cells = <1>;
+    };
 };
