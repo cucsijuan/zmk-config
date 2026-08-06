@@ -13,7 +13,7 @@
 #include <zmk/rgb_layer.h>
 #include <zmk/event_manager.h>
 #include <zmk/events/layer_state_changed.h>
-#include <zmk/keymap.h>
+#include <zmk/matrix.h>
 
 LOG_MODULE_DECLARE(zmk, CONFIG_ZMK_LOG_LEVEL);
 
@@ -83,8 +83,8 @@ static void update_led_strip(void) {
     struct led_rgb pixels[50];
     uint32_t color;
 
-    /* Get the keymap to know how many keys we have */
-    uint8_t keys_on_layer = zmk_keymap_layer_size();
+    /* Total physical key count, known at compile time from the matrix transform */
+    uint8_t keys_on_layer = ZMK_KEYMAP_LEN;
     if (keys_on_layer > 50) keys_on_layer = 50;
 
     for (uint8_t i = 0; i < keys_on_layer; i++) {
@@ -97,9 +97,9 @@ static void update_led_strip(void) {
         }
 
         /* Convert RGB color (0xRRGGBB) to led_rgb struct */
-        pixels[i].red = (color >> 16) & 0xFF;
-        pixels[i].green = (color >> 8) & 0xFF;
-        pixels[i].blue = color & 0xFF;
+        pixels[i].r = (color >> 16) & 0xFF;
+        pixels[i].g = (color >> 8) & 0xFF;
+        pixels[i].b = color & 0xFF;
     }
 
     /* Update LED strip */
