@@ -23,8 +23,11 @@ static uint8_t current_layer = 0;
 
 #if DT_HAS_COMPAT_STATUS_OKAY(zmk_rgb_layer)
 
-#define RGB_LAYER_LAYER_COLOR(n) DT_INST_PROP_BY_IDX(0, layer_colors, n)
-#define RGB_LAYER_KEY_COLOR(key, layer) DT_INST_PROP_BY_IDX(0, key_colors, (key * 16 + layer))
+static const uint32_t dt_layer_colors[] = DT_INST_PROP(0, layer_colors);
+
+#if DT_INST_NODE_HAS_PROP(0, key_colors)
+static const uint32_t dt_key_colors[] = DT_INST_PROP(0, key_colors);
+#endif
 
 static int rgb_layer_init(void) {
     led_strip = DEVICE_DT_GET(DT_CHOSEN(zmk_underglow));
@@ -35,11 +38,13 @@ static int rgb_layer_init(void) {
     }
 
     /* Initialize layer colors from device tree */
-    rgb_config.total_layers = DT_INST_PROP_LEN(0, layer_colors) / sizeof(uint32_t);
-    rgb_config.total_keys = DT_INST_PROP_LEN(0, key_colors) / (rgb_config.total_layers * sizeof(uint32_t));
+    rgb_config.total_layers = ARRAY_SIZE(dt_layer_colors);
+    if (rgb_config.total_layers > 16) {
+        rgb_config.total_layers = 16;
+    }
 
-    for (int i = 0; i < rgb_config.total_layers && i < 16; i++) {
-        rgb_config.layer_colors[i] = DT_INST_PROP_BY_IDX(0, layer_colors, i);
+    for (int i = 0; i < rgb_config.total_layers; i++) {
+        rgb_config.layer_colors[i] = dt_layer_colors[i];
     }
 
     /* Initialize key override flags to false */
@@ -48,6 +53,25 @@ static int rgb_layer_init(void) {
             rgb_config.key_override[i][j] = false;
         }
     }
+
+#if DT_INST_NODE_HAS_PROP(0, key_colors)
+    /* Populate per-key overrides from device tree; a color of 0x000000
+     * means "no override, use the layer color" for that key/layer. */
+    rgb_config.total_keys = ARRAY_SIZE(dt_key_colors) / rgb_config.total_layers;
+    if (rgb_config.total_keys > 50) {
+        rgb_config.total_keys = 50;
+    }
+
+    for (int key = 0; key < rgb_config.total_keys; key++) {
+        for (int layer = 0; layer < rgb_config.total_layers; layer++) {
+            uint32_t color = dt_key_colors[key * rgb_config.total_layers + layer];
+            if (color != 0) {
+                rgb_config.key_colors[key][layer] = color;
+                rgb_config.key_override[key][layer] = true;
+            }
+        }
+    }
+#endif
 
     LOG_INF("ZMK RGB Layer Driver initialized with %d layers", rgb_config.total_layers);
     zmk_rgb_layer_update_layer(0);
