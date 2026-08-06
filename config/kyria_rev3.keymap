@@ -229,7 +229,7 @@
         };
 
         cBackspace {
-            bindings = <&kp RC(BACKSPACE)>;
+            bindings = <&kp LC(BACKSPACE)>;
             key-positions = <11 23>;
             require-prior-idle-ms = <250>;
         };
