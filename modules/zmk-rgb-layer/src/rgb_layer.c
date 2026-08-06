@@ -12,8 +12,17 @@
 
 #include <zmk/rgb_layer.h>
 #include <zmk/event_manager.h>
-#include <zmk/events/layer_state_changed.h>
 #include <zmk/matrix.h>
+
+/* Layer state (and its change event) only exists on the half that runs
+ * the keymap - the central half in a split build, or the whole board in
+ * a non-split build. The peripheral half of a split never sees layers,
+ * so it just keeps whatever color rgb_layer_init() set at boot. */
+#define RGB_LAYER_HAS_LAYER_EVENTS (!IS_ENABLED(CONFIG_ZMK_SPLIT) || IS_ENABLED(CONFIG_ZMK_SPLIT_ROLE_CENTRAL))
+
+#if RGB_LAYER_HAS_LAYER_EVENTS
+#include <zmk/events/layer_state_changed.h>
+#endif
 
 LOG_MODULE_DECLARE(zmk, CONFIG_ZMK_LOG_LEVEL);
 
@@ -146,6 +155,7 @@ void zmk_rgb_layer_set_key_color(uint8_t key_index, uint8_t layer, uint32_t colo
     }
 }
 
+#if RGB_LAYER_HAS_LAYER_EVENTS
 static int rgb_layer_layer_changed(const zmk_event_t *event) {
     const struct zmk_layer_state_changed *layer_event = as_zmk_layer_state_changed(event);
 
@@ -160,9 +170,10 @@ static int rgb_layer_layer_changed(const zmk_event_t *event) {
     return 0;
 }
 
-SYS_INIT(rgb_layer_init, APPLICATION, CONFIG_APPLICATION_INIT_PRIORITY);
-
 ZMK_LISTENER(zmk_rgb_layer, rgb_layer_layer_changed);
 ZMK_SUBSCRIPTION(zmk_rgb_layer, zmk_layer_state_changed);
+#endif /* RGB_LAYER_HAS_LAYER_EVENTS */
+
+SYS_INIT(rgb_layer_init, APPLICATION, CONFIG_APPLICATION_INIT_PRIORITY);
 
 #endif /* DT_HAS_COMPAT_STATUS_OKAY(zmk_rgb_layer) */
