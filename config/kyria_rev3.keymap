@@ -212,6 +212,15 @@
             require-prior-idle-ms = <250>;
         };
 
+        // ESC + Q: vuelve a encender el VCC de la izquierda, que alimenta la mitad
+        // derecha por el TRS. Solo usa teclas de la izquierda para funcionar aunque
+        // la derecha esté sin corriente.
+        PowerOn {
+            bindings = <&ext_power EP_ON>;
+            key-positions = <0 1>;
+            require-prior-idle-ms = <250>;
+        };
+
         Underscore {
             bindings = <&kp UNDER>;
             key-positions = <9 21>;
