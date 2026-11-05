@@ -37,15 +37,17 @@
         };
 
         BT2 {
-            bindings = <&bt BT_CLR>;
+            bindings = <&bt BT_SEL 2>;
             key-positions = <32 45>;
             require-prior-idle-ms = <250>;
         };
 
+        // Borra TODOS los emparejamientos: solo funciona dentro de ConfigLayer
         BTClear {
             bindings = <&bt BT_CLR_ALL>;
             key-positions = <33 46>;
             require-prior-idle-ms = <250>;
+            layers = <1>;
         };
 
         ParenthesisCOMBO {
@@ -68,7 +70,7 @@
 
         AngleCOMBO {
             bindings = <&AngleC>;
-            key-positions = <36 37>;
+            key-positions = <36 38>;
             require-prior-idle-ms = <250>;
         };
 
@@ -210,12 +212,6 @@
             require-prior-idle-ms = <250>;
         };
 
-        RBootLoader {
-            bindings = <&bootloader>;
-            key-positions = <47 46 48>;
-            require-prior-idle-ms = <250>;
-        };
-
         Underscore {
             bindings = <&kp UNDER>;
             key-positions = <9 21>;
@@ -236,7 +232,8 @@
 
         question {
             bindings = <&kp QUESTION>;
-            key-positions = <10 22>;
+            key-positions = <22 38>;
+            require-prior-idle-ms = <250>;
         };
     };
 
@@ -327,13 +324,15 @@
             // ---------------------------------------------------------------------------------------------------------------------------------
             // |       |      |BT_CLR|BTSEL0|BTSEL1|BTSEL2|                                         |Hue+ |Sat+ |Brt+ |Spd+ |Eff  |On   |
             // |       |      |      |BTSEL3|BTSEL4|      |                                         |Hue- |Sat- |Brt- |Spd- |Eff- |     |
-            // |       |      |      |      |      |      |      |      |      |      |      |      |      |      |      |      |      |      |
+            // |       |      |      |      |      |      |      |      | BOOT | GAME |      |      |      |      |      |      |
+            // BOOT = bootloader de la mitad derecha. La izquierda sigue con el combo 41+42+43.
+            // Combo 33+46 en esta capa = BT_CLR_ALL.
             //                       |      |      |      |      |      |      |      |      |      |      |      |      |
 
             bindings = <
 &trans  &trans  &bt BT_CLR  &bt BT_SEL 0  &bt BT_SEL 1  &bt BT_SEL 2                                  &rgb_ug RGB_HUI  &rgb_ug RGB_SAI  &rgb_ug RGB_BRI  &rgb_ug RGB_SPI  &rgb_ug RGB_EFF  &rgb_ug RGB_TOG
 &trans  &trans  &trans      &bt BT_SEL 3  &bt BT_SEL 4  &trans                                        &rgb_ug RGB_HUD  &rgb_ug RGB_SAD  &rgb_ug RGB_BRD  &rgb_ug RGB_SPD  &rgb_ug RGB_EFR  &ext_power EP_TOG
-&trans  &trans  &trans      &trans        &trans        &trans        &trans  &trans  &trans  &to 4   &trans           &trans           &trans           &trans           &trans           &trans
+&trans  &trans  &trans      &trans        &trans        &trans        &trans  &trans  &bootloader  &to 4   &trans           &trans           &trans           &trans           &trans           &trans
                             &trans        &trans        &trans        &trans  &trans  &trans  &trans  &trans           &trans           &trans
             >;
 
