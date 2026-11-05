@@ -24,6 +24,20 @@
             require-prior-idle-ms = <250>;
         };
 
+        // Alt + Ctrl de cada lado = tecla Windows. Si lo mantienes, funciona como
+        // modificador (Win+E, Win+D...).
+        WinLeft {
+            bindings = <&kp LGUI>;
+            key-positions = <41 42>;
+            require-prior-idle-ms = <250>;
+        };
+
+        WinRight {
+            bindings = <&kp LGUI>;
+            key-positions = <47 48>;
+            require-prior-idle-ms = <250>;
+        };
+
         BT0 {
             bindings = <&bt BT_SEL 0>;
             key-positions = <30 43>;
