@@ -379,16 +379,16 @@
 
         NavLayer {
             // ---------------------------------------------------------------------------------------------------------------------------------
-            // |       |      | F7   | F8   | F9   |      |                                          |      |       |       |       |       |      |
-            // |       |      | F4   | F5   | F6   |      |                                          | HOME | UP    | END   |       |       |      |
-            // |       |      |F10/F1|F11/F2| F12  | F3   |                                          |      | LEFT  | DOWN  | RIGHT |       |      |
+            // |       | F12  | F7   | F8   | F9   |      |                                          |      |       |       |       |       |      |
+            // |       | F11  | F4   | F5   | F6   |      |                                          | HOME | UP    | END   |       |       |      |
+            // |       | F10  | F1   | F2   | F3   |      |                                          | LEFT | DOWN  | RIGHT |       |       |      |
             //                       |      |      |      |         |         |  |         |         |      |      |      |
 
             bindings = <
-&trans  &trans   &kp F7      &kp F8      &kp F9  &trans                                  &trans          &trans          &trans           &trans  &trans  &trans
-&trans  &trans   &kp F4      &kp F5      &kp F6  &trans                                  &kp HOME        &kp UP_ARROW    &kp END          &trans  &trans  &trans
-&trans  &kp F10  &mt F11 F1  &mt F12 F2  &kp F3  &trans  &trans  &trans  &trans  &trans  &kp LEFT_ARROW  &kp DOWN_ARROW  &kp RIGHT_ARROW  &trans  &trans  &trans
-                             &trans      &trans  &trans  &trans  &trans  &trans  &trans  &trans          &trans          &trans
+&trans  &kp F12  &kp F7  &kp F8  &kp F9  &trans                                  &trans          &trans          &trans           &trans  &trans  &trans
+&trans  &kp F11  &kp F4  &kp F5  &kp F6  &trans                                  &kp HOME        &kp UP_ARROW    &kp END          &trans  &trans  &trans
+&trans  &kp F10  &kp F1  &kp F2  &kp F3  &trans  &trans  &trans  &trans  &trans  &kp LEFT_ARROW  &kp DOWN_ARROW  &kp RIGHT_ARROW  &trans  &trans  &trans
+                         &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans          &trans          &trans
             >;
 
             sensor-bindings =
